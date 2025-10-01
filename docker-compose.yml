@@ -1,20 +1,37 @@
 services:
-  web:
-    build: .
+  backend:
+    build: ./backend
     ports:
       - "5000:5000"
     environment:
       - FLASK_ENV=development
-      - PYTHONUNBUFFERED=1
     develop:
       watch:
         - action: sync
-          path: ./app
-          target: /app/app
+          path: ./backend
+          target: /app
           ignore:
             - __pycache__/
-        - action: sync
-          path: ./run.py
-          target: /app/run.py
+            - "*.pyc"
         - action: rebuild
-          path: ./requirements.txt
+          path: ./backend/requirements.txt
+
+  frontend:
+    build: ./frontend
+    ports:
+      - "3000:3000"
+    environment:
+      - BACKEND_API_URL=http://backend:5000/api
+      - FLASK_ENV=development
+    depends_on:
+      - backend
+    develop:
+      watch:
+        - action: sync
+          path: ./frontend
+          target: /app
+          ignore:
+            - __pycache__/
+            - "*.pyc"
+        - action: rebuild
+          path: ./frontend/requirements.txt

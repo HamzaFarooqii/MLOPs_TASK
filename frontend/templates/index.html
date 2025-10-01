@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Management System</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Student Management System</h1>
+
+        <!-- Flash Messages -->
+        <div id="flash-messages"></div>
+
+        <!-- Student Form -->
+        <div class="form-section">
+            <form id="studentForm">
+                <div class="form-group">
+                    <label for="name">Name *</label>
+                    <input type="text" id="name" name="name" placeholder="Enter student name" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="rollNo">Roll Number *</label>
+                    <input type="text" id="rollNo" name="rollNo" placeholder="Enter roll number" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="university">University Name *</label>
+                    <input type="text" id="university" name="university" placeholder="Enter university name" required>
+                </div>
+
+                <button type="submit" class="submit-btn">Submit</button>
+            </form>
+        </div>
+
+        <!-- Student Table -->
+        <div class="table-section">
+            <h2>Student Records</h2>
+            <div id="tableContainer">
+                <div class="no-data">
+                    No student records found. Add a student using the form above.
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/app.js') }}"></script>
+</body>
+</html>
